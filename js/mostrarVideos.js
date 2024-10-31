@@ -23,8 +23,12 @@ export default function construyeCard(titulo, descripcion, url, imagen) {
 
 
 async function listaVideos() {
-    const listaAPI = await conectaAPI.listaVideos();
-    listaAPI.forEach(element => lista.appendChild(construyeCard(element.titulo, element.descripcion, element.url, element.imagen)));
+    try{
+        const listaAPI = await conectaAPI.listaVideos();
+        listaAPI.forEach(element => lista.appendChild(construyeCard(element.titulo, element.descripcion, element.url, element.imagen)));
+    }catch{
+        lista.innerHTML=`<h2 class="Mensaje__titulo">Ha ocurrido un problema con la conexion :(<h2/>`;
+    }
 }
 
 listaVideos();
